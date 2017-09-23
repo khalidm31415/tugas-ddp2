@@ -38,9 +38,13 @@ public class IceCream {
     }
 
     public static void tebak(IceCream A, IceCream B, double pos){
-        int m = Math.min(A.red, B.red) + pos * Math.abs(A.red - B.red);
-        int h = Math.min(A.green, B.green) + pos * Math.abs(A.green - B.green);
-        int b = Math.min(A.blue, B.blue) + pos * Math.abs(A.blue - B.blue);
+        double md = Math.min(A.red, B.red) + pos * Math.abs(A.red - B.red);
+        double hd = Math.min(A.green, B.green) + pos * Math.abs(A.green - B.green);
+        double bd = Math.min(A.blue, B.blue) + pos * Math.abs(A.blue - B.blue);
+
+        int m = (int) Math.floor(md);
+        int h = (int) Math.floor(hd);
+        int b = (int) Math.floor(bd);
 
         IceCream tebakan = new IceCream(m, h, b);
         System.out.println(String.format("RGB(%d, %d, %d)", tebakan.red, tebakan.green, tebakan.blue));
@@ -54,6 +58,6 @@ public class IceCream {
         System.out.println(hijauBaru.green);
         System.out.println(biruBaru.red);
         IceCream.gabung(merahBaru, hijauBaru, biruBaru);
-        IceCream.tebak(merahBaru, hijauBaru, 0.1);
+        IceCream.tebak(merahBaru, hijauBaru, 0.5);
     }
    }
