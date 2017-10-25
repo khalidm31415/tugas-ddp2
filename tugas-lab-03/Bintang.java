@@ -12,7 +12,7 @@ public class Bintang{
 
     public static void bintangBintang(int m, int n) {
         for (int i = 1; i <= ((n % 2 == 0) ? (n/2):(n/2 + 1)); i++) {
-            System.out.println(StringUtils.repeat(" ", i-1) + StringUtils.repeat("* ", m));
+            System.out.println(StringUtils.repeat(" ", i - 1) + StringUtils.repeat("* ", m));
         }
         for (int i = 1; i <= n/2; i++) {
             System.out.println(StringUtils.repeat(" ", n/2 - i) + StringUtils.repeat("* ", m));
