@@ -1,0 +1,15 @@
+// ID, Tipe, Nama, Harga, CPU, Memory, Harddisk
+1, PerangkatKeras,Acer Aspire AX1935,3500000,Intel Celeron 2.50 GHz,DDR3 4 GB,HDD 500 GB
+2, PerangkatKeras,Sony Vaio SVE14-122CV,5550000,Intel Core i3 2.40 GHz,DDR3 2 GB,HDD 320 GB
+3, PerangkatKeras,Asus Nexus 7,3159000,ARM Cortex A9 1.3 GHz,1 GB,32 GB
+
+// ID, Tipe, Nama, Harga, Deskripsi
+4, Aksesoris,Cross Power Bank 5800 mAh,235000,Charger portable untuk gadget
+5, Aksesoris,Razer Abyssus 1800 dpi Mouse,250000,Mouse imba untuk gaming
+
+// ID, Tipe, Nama, Harga, OS, Jenis
+6, PerangkatLunak,Penyisir Candi,50000,Android 4.0,Game
+7, PerangkatLunak,Panggilan Tugas 4,250000,Windows 7,Game
+8, PerangkatLunak,UIAV,100000,Windows XP,Antivirus
+
+

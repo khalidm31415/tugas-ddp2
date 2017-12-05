@@ -1,6 +1,6 @@
 public class Anagram{
     public static void main(String[] args){
-        printArray(perms("agung"));
+        printArray(perms("ayam"));
     }
 
     public static String[] perms(String str){
