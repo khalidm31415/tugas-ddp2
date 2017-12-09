@@ -4,26 +4,29 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;  
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 import java.util.Collections;   
 
 public class Pulsa {  
-    public static void main (String[] args) {  
+    public static void main (String[] args) throws FileNotFoundException, NumberFormatException, IOException, ProviderException, NominalException {  
         try {  
             File f = new File("input.txt");
             Scanner in = new Scanner(f);
             String tanggal = in.nextLine();
 
+            int dd, mm, yyyy;
             try {
                 String[] tanggalArray = tanggal.split("/");
-                int dd = Integer.parseInt(tanggalArray[0]);
-                int mm = Integer.parseInt(tanggalArray[1]);
-                int yyyy = Integer.parseInt(tanggalArray[2]);
-
-                if (dd > 31 || mm > 12 || yyyy > 9999){
-                    throw new NumberFormatException("Terdapat kesalahan penulisan tanggal");
-                }
+                dd = Integer.parseInt(tanggalArray[0]);
+                mm = Integer.parseInt(tanggalArray[1]);
+                yyyy = Integer.parseInt(tanggalArray[2]);
             }
             catch (NumberFormatException nfe) {
+                throw new NumberFormatException("Terdapat Kesalahan penulisan tanggal");
+            }
+
+            if (dd > 31 || dd < 1 || mm > 12 || mm < 1 || yyyy < 1){
                 throw new NumberFormatException("Terdapat kesalahan penulisan tanggal");
             }
 
@@ -53,6 +56,14 @@ public class Pulsa {
                 catch (NumberFormatException nfe) {
                     throw new NumberFormatException("Terdapat kesalahan penulisan nominal");
                 }
+
+                ArrayList<Integer> nominals = new ArrayList<Integer>();
+                nominals.add(10); nominals.add(25); nominals.add(50); nominals.add(100);
+
+                if (!nominals.contains(nominal)) {
+                    throw new NominalException(String.format("Nominal %s tidak tersdia", nominal));
+                }
+
                 if (provider.equals("Jarvis") || provider.equals("Friday")){
                     nominal++;
                     if (tipe == 'V') nominal++;
@@ -63,6 +74,7 @@ public class Pulsa {
                     if (tipe == 'V') nominal++;
                     if (counter % 10 == 0 && nominal > 50) nominal = (int) Math.ceil(0.9 * nominal); 
                 }
+
                 if (provider.equals("Howard")) {howard.add(Integer.toString(nominal)); totalHoward += nominal;}
                 else if (provider.equals("Jarvis")) {jarvis.add(Integer.toString(nominal)); totalJarvis += nominal;}
                 else if (provider.equals("Friday")) {friday.add(Integer.toString(nominal)); totalFriday += nominal;}
@@ -111,12 +123,17 @@ public class Pulsa {
             pepperWriter.close();
             happyWriter.close();
         }   
-
+        catch (FileNotFoundException fne) {
+            System.out.println("File tidak ditemukan");
+        }
         catch (IOException ioe) {
-            throw new IOException("Ada error");
+            System.out.println("Ada error");
         } 
         catch (ProviderException pe){
             System.out.println(pe);
+        }
+        catch (NominalException ne) {
+            System.out.println(ne);
         }
     } 
 }
@@ -126,3 +143,9 @@ class ProviderException extends Exception {
         super(message);
     }
 }
+
+class NominalException extends Exception {
+    public NominalException(String message) {
+        super(message);
+    }
+} 
